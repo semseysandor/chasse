@@ -78,6 +78,9 @@ class CRM_Chasse_Upgrader extends CRM_Chasse_Upgrader_Base {
 
     // Add rule if CiviRule is installed.
     $this->installCiviRuleAction();
+
+    // Add is_journey field to civicrm_mailing
+    $this->addFieldToMailing();
   }
 
   /**
@@ -127,6 +130,7 @@ class CRM_Chasse_Upgrader extends CRM_Chasse_Upgrader_Base {
     }
     return $result['values'][0];
   }
+
   /**
    * Example: Work with entities usually not available during the install step.
    *
@@ -178,6 +182,9 @@ class CRM_Chasse_Upgrader extends CRM_Chasse_Upgrader_Base {
           $result = civicrm_api3('CiviRuleAction', 'delete', ['id' => $result['values'][0]['id']]);
         }
       }
+
+      // Remove is_journey field from civicrm_mailings
+      $this->removeFieldFromMailing();
     }
     catch (Exception $e) {
       Civi::log()->debug('chasse uninstall exception', ['class' => get_class($e), 'message' => $e->getMessage()]);
@@ -186,6 +193,23 @@ class CRM_Chasse_Upgrader extends CRM_Chasse_Upgrader_Base {
     // Remove the setting.
     Civi::settings()->set('chasse_config', NULL);
 
+  }
+
+  /**
+   * Add field to civicrm_mailing
+   */
+  protected function addFieldToMailing()
+  {
+    $this->executeSqlFile('sql/add_is_journey_field.sql');
+  }
+
+  /**
+   * Remove field from civicrm_mailing
+   */
+  protected function removeFieldFromMailing()
+  {
+    // Remove is_journey field from civicrm_mailings
+    $this->executeSqlFile('sql/remove_is_journey_field.sql');
   }
 
   /**
@@ -377,6 +401,14 @@ class CRM_Chasse_Upgrader extends CRM_Chasse_Upgrader_Base {
    */
   public function upgrade_0003() {
     $this->installCiviRuleAction();
+    return TRUE;
+  }
+
+  /**
+   * Create is_journey field
+   */
+  public function upgrade_0004() {
+    $this->addFieldToMailing();
     return TRUE;
   }
 }
