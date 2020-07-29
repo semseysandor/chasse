@@ -180,6 +180,13 @@ function chasse_civicrm_navigationMenu(&$menu) {
     'operator'   => 'OR',
     'separator'  => 0,
   ]);
+  _chasse_civix_insert_navigation_menu($menu, 'Mailings', [
+    'label'      => E::ts('Chassé Supporter Journeys Reports'),
+    'name'       => 'chasse_journey_summary',
+    'url'        => 'civicrm/chasse/summary',
+    'permission' => 'access CiviCRM', // Seems sensible.
+    'separator'  => 0,
+  ]);
   _chasse_civix_navigationMenu($menu);
 }
 

@@ -6,4 +6,16 @@
     <title>ChasseSetStepRulesAction</title>
     <access_arguments>access CiviCRM</access_arguments>
   </item>
+  <item>
+    <path>civicrm/chasse</path>
+    <page_callback>CRM_Chasse_Page_Summary</page_callback>
+    <title>Summary</title>
+    <access_arguments>access CiviCRM</access_arguments>
+  </item>
+  <item>
+    <path>civicrm/chasse/report</path>
+    <page_callback>CRM_Chasse_Page_Report</page_callback>
+    <title>Report</title>
+    <access_arguments>access CiviCRM</access_arguments>
+  </item>
 </menu>
