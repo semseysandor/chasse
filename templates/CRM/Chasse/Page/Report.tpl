@@ -1,6 +1,6 @@
 {if !$no_mailing}
-<fieldset>
-  <legend>{ts}Delivery Summary{/ts}</legend>
+  <fieldset>
+    <legend>{ts}Delivery Summary{/ts}</legend>
     <table class="crm-info-panel">
       <tr>
         <td class="label">{ts}Intended Recipients{/ts}</td>
@@ -43,12 +43,7 @@
         <td>{$report_total.optout} ({$report_total.optout_rate|string_format:"%0.2f"}%)</td>
       </tr>
     </table>
-</fieldset>
-
-
-
+  </fieldset>
 {else}
-  <div class="messages status no-popup">No mailing</div>
-
-
+  <div class="messages status no-popup">No reports could be found</div>
 {/if}
