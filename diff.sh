@@ -19,7 +19,7 @@ echo
 git diff ${CIVI_MODULE}/CRM/Mailing/Page/Browse.php ./CRM/Mailing/Page/Browse.php
 echo
 echo
-git diff ${CIVI_MODULE}/CRM/Mailing/Selector/Browse.php./CRM/Mailing/Selector/Browse.php
+git diff ${CIVI_MODULE}/CRM/Mailing/Selector/Browse.php ./CRM/Mailing/Selector/Browse.php
 echo
 echo
 
