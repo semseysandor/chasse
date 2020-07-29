@@ -23,7 +23,7 @@ class CRM_Chasse_Page_Report extends CRM_Core_Page
     );
 
     if ($result['count'] <= 0) {
-      $this->assign('mailing',false);
+      $this->assign('no_mailing',true);
       parent::run();
       return;
     }

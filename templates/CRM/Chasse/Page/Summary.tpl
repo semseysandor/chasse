@@ -19,7 +19,7 @@
       <td class="crm-mailing-status">{$journey.id}</td>
       <td class="crm-mailing-status">{$journey.name}</td>
       <td class="crm-mailing-status">{$journey.code}</td>
-      <td class="crm-mailing-status">{$journey.mailing_id}</td>
+      <td class="crm-mailing-status">{$journey.msg_template_id}</td>
       <td>
         <a href ={crmURL p='civicrm/chasse/report' q="msg_template_id="}{$journey.msg_template_id} title="Show report">
         Report

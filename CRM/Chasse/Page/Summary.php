@@ -40,9 +40,4 @@ class CRM_Chasse_Page_Summary extends CRM_Core_Page {
     parent::run();
   }
 
-  protected function getJourneys()
-  {
-    $journeys=[];
-  }
-
 }

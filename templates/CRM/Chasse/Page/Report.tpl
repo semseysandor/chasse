@@ -1,4 +1,4 @@
-{if $mailing}
+{if !$no_mailing}
 <fieldset>
   <legend>{ts}Delivery Summary{/ts}</legend>
     <table class="crm-info-panel">
