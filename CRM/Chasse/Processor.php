@@ -211,6 +211,17 @@ class CRM_Chasse_Processor
       throw new \Exception("Invalid From email address on journey $journey[name], step $step[code], (from email address #$journey[mail_from])");
     }
 
+    // Extract reply-to address fields from the step.
+    $result = civicrm_api3('OptionValue',  'getvalue',
+      ['return'=> "label", 'value'=> $step['mail_replyto'], 'option_group_id'=> 'from_email_address']);
+    if (preg_match('/^"([^"]+)"\s+<([^>]+)>$/', $result, $_)) {
+      $replyto_name = $_[1];
+      $replyto_mail = $_[2];
+    }
+    else {
+      throw new \Exception("Invalid Reply-to email address on journey $journey[name], step $step[code], (from email address #$journey[mail_from])");
+    }
+
     // Domain contact
     $domain_contact = CRM_Core_BAO_Domain::getDomain()->contact_id;
 
@@ -218,7 +229,7 @@ class CRM_Chasse_Processor
       'sequential' => 1,
       'name' => $tpl['msg_title'],
       'msg_template_id' => $msg_template_id,
-      //'replyto_email'
+      'replyto_email' => $replyto_mail,
       'groups' => [
         'include' => [$group_id],
         'exclude' => [],
